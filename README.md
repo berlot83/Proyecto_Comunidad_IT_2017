@@ -6,9 +6,9 @@ En este repositorio se encuentra todo el poryecyo final del curso que realicé e
 API Restful en lenguaje Java, el proyecto de negocio es un sistema que permite realizar la administración de 3 aspectos
 organizativos de un aeropuerto:
     
-  • Administración de RH.
-  • Administración de vuelos.
-  • Administración de seguridad.
+  • Administración de RH
+  • Administración de vuelos
+  • Administración de seguridad
   
 Los anteriores administradores pueden ser agregados por medio de un login clásico o por medio de otro administrador superior que los puede
 agregar o eliminar.
