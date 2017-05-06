@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2017 a las 02:32:37
+-- Tiempo de generación: 06-05-2017 a las 15:42:15
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -42,10 +42,13 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id_administrador`, `tipo_admin`, `nombre`, `apellido`, `usuario`, `pass`, `email`, `direccion`) VALUES
-(24, 'adminRH', 'Manuel', 'Manzanero', 'user', '1234', 'asd', 'asd'),
-(37, 'adminVuelos', 'pepe', 'argento', 'pepe', '1234', 'asd', 'asd'),
-(38, 'adminRH', 'German', 'Gonzalez', 'dana', '1234', 'asd', 'asd'),
-(41, 'adminSeg', 'Pepa', 'Miranda', 'pepa', '1234', 'asd', 'asd');
+(24, 'adminRH', 'Manuel', 'Manzanero', 'user', '81dc9bdb52d04dc20036dbd8313ed055', 'asd', 'asd'),
+(37, 'adminVuelos', 'pepe', 'argento', 'pepe', '81dc9bdb52d04dc20036dbd8313ed055', 'asd', 'asd'),
+(41, 'adminSeg', 'Pepa', 'Miranda', 'pepa', '81dc9bdb52d04dc20036dbd8313ed055', 'asd', 'asd'),
+(116, 'adminVuelos', 'Jorge', 'Pereyra', 'jorge82', '81dc9bdb52d04dc20036dbd8313ed055', 'jorge82@yahoo.com.ar', 'Brandsen'),
+(117, 'adminRH', 'Marcelo', 'Morelos', 'marce81', '81dc9bdb52d04dc20036dbd8313ed055', 'marce83@yahoo.com.ar', 'MontesOca'),
+(118, 'adminVuelos', 'Carlos', 'Tomada', 'carlos83', '81dc9bdb52d04dc20036dbd8313ed055', 'carlos83@yahoo.com.ar', 'SanJuan'),
+(120, 'adminVuelos', 'Pablo', 'Gottifredi', 'PabloG', 'e10adc3949ba59abbe56e057f20f883e', 'asd@asd.com', 'Scalabrini');
 
 -- --------------------------------------------------------
 
@@ -66,16 +69,12 @@ CREATE TABLE `aviones` (
 
 INSERT INTO `aviones` (`id`, `tipo_avion`, `matricula`, `cantidad_pasajeros`) VALUES
 (2, 'Jumbo 747', 'LM-505', 350),
-(4, 'MD5', 'MD-605', 250),
-(5, 'Boing 777-700', 'LV-205', 320),
-(6, 'KL-310', 'KL-310', 153),
-(11, 'KL-310', 'LM-306', 153),
 (12, 'C-135', 'CV-435', 35),
-(13, 'Fokker-27', 'FO-125', 25),
 (14, 'C-130H', 'CH-230', 60),
-(15, 'cessna', 'CS-450', 4),
 (16, 'Super Jumbo', 'SJ-357', 390),
-(17, 'Cessna-182', 'CS-182', 4);
+(17, 'Cessna-182', 'CS-182', 4),
+(24, 'Galaxy', 'GL-456', 200),
+(25, 'cv', '1234', 234);
 
 -- --------------------------------------------------------
 
@@ -106,13 +105,48 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id_empleado`, `dni`, `cuit`, `nacimiento`, `nombre`, `apellido`, `direccion`, `cargo`, `sueldo_cargo`, `cargas_sociales`, `vacaciones`, `sueldo_neto`, `id_administrador`, `tipo_administrador`, `usuario_administrador`) VALUES
-(140, 30158619, 20301586192, '2017-04-11', 'asd', 'asd', 'asd', 'asd', 123, 20.91, 4.92, 97.17, 38, 'adminRH', 'user'),
-(142, 12345673, 9123456789, '2017-04-12', 'dfg', 'dfg', 'dfg', 'dfg', 56566700, 9616330, 2262670, 44687700, 24, 'adminRH', 'user'),
 (143, 25345123, 20123456784, '1994-07-14', 'Maria', 'Colombraro', 'Colombres', 'Encargada', 10000, 1700, 400, 7900, 24, 'adminRH', 'user'),
 (144, 25546123, 23123456794, '1994-07-12', 'Pedro', 'Gimenez', 'SanJuan', 'Seguridad', 9500, 1615, 380, 7505, 24, 'adminRH', 'user'),
 (145, 25546145, 23123456732, '1992-09-15', 'Marcelo', 'Cohelo', 'Directorio', 'Balijero', 25000, 4250, 1000, 19750, 24, 'adminRH', 'user'),
 (147, 25546115, 23123456737, '1992-09-17', 'Pablo', 'Pereyra', 'Independencia', 'Balijero', 25000, 4250, 1000, 19750, 24, 'adminRH', 'user'),
-(148, 25346715, 26123456747, '1989-02-07', 'Gisela', 'Monteagudo', 'Peron1025', 'Recepcionista', 23000, 3910, 920, 18170, 24, 'adminRH', 'user');
+(148, 25346715, 26123456747, '1989-02-07', 'Gisela', 'Monteagudo', 'Peron1025', 'Recepcionista', 23000, 3910, 920, 18170, 24, 'adminRH', 'user'),
+(149, 40158719, 20301577191, '1983-04-09', '', '', '234', '123', 12345, 2098.65, 493.8, 9752.55, 24, 'adminRH', 'user'),
+(150, 23456789, 23123456789, '2017-04-18', 'sdf', 'sdf', 'sdf1234', 'wer324', 4000, 680, 160, 3160, 24, 'adminRH', 'user'),
+(151, 90454567, 90345678909, '2017-04-09', 'pepe', 'pepe', 'pepe0', 'pepe0', 12, 2.04, 0.48, 9.48, 24, 'adminRH', 'user'),
+(152, 12345678, 12345678909, '2017-05-17', 'Jaime', 'Baily', 'Brandsen', 'empleado', 14000, 2380, 560, 11060, 24, 'adminRH', 'user'),
+(154, 12373678, 32165256345, '2017-05-16', 'Lorenzo', 'Lamas', 'Cancun', 'empleado', 15000, 2550, 600, 11850, 24, 'adminRH', 'marce81'),
+(155, 9876589, 12398745685, '2017-05-24', 'Charlie', 'Sheen', 'Malibu', 'actor', 14000, 2380, 560, 11060, 24, 'adminRH', 'marce81');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresas`
+--
+
+CREATE TABLE `empresas` (
+  `id` int(11) NOT NULL,
+  `empresa` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empresas`
+--
+
+INSERT INTO `empresas` (`id`, `empresa`) VALUES
+(1, 'Aerolineas Argentinas'),
+(14, 'Air France'),
+(9, 'AliTalia'),
+(2, 'American Airlines'),
+(7, 'Austral'),
+(15, 'Blue Airlines'),
+(5, 'British Airways'),
+(13, 'Iberia'),
+(8, 'KLM'),
+(6, 'Latam'),
+(4, 'Lufthansa'),
+(11, 'Souther Airlines'),
+(12, 'United Airlines'),
+(3, 'Varig');
 
 -- --------------------------------------------------------
 
@@ -122,7 +156,7 @@ INSERT INTO `empleados` (`id_empleado`, `dni`, `cuit`, `nacimiento`, `nombre`, `
 
 CREATE TABLE `eventos` (
   `id_evento` int(11) NOT NULL,
-  `nombre` text NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -131,11 +165,10 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id_evento`, `nombre`, `fecha`) VALUES
-(2, 'GimGisell', '2017-04-20'),
 (4, 'Embajador Chino', '2017-04-29'),
-(5, 'asd', '2017-04-26'),
-(6, 'sd', '2017-04-24'),
-(7, 'ert', '2017-04-28');
+(8, 'Visita embajador China', '2017-04-30'),
+(10, 'Visita embajador Peru', '2017-04-30'),
+(16, 'Visita del gerente del 2do coca cola', '2017-04-30');
 
 -- --------------------------------------------------------
 
@@ -145,7 +178,7 @@ INSERT INTO `eventos` (`id_evento`, `nombre`, `fecha`) VALUES
 
 CREATE TABLE `servicios` (
   `id_servicio` int(11) NOT NULL,
-  `nombre` text NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -157,13 +190,14 @@ INSERT INTO `servicios` (`id_servicio`, `nombre`, `activo`) VALUES
 (36, 'Servicio especial antiexplosivos', 1),
 (37, 'Servicio especial antidrogas', 0),
 (38, 'Antidrogas', 1),
-(41, 'Megacanje', 1),
 (43, 'AntiBombas', 0),
-(44, 'Hospitalario', 1),
-(45, 'Policía aduanera', 1),
 (46, 'Servicio especial de perros', 1),
-(47, 'Guardaespaldas', 0),
-(48, 'Bomberos voluntarios', 0);
+(48, 'Bomberos voluntarios', 0),
+(51, 'Servicio especial antiterrorismo', 1),
+(52, 'Servicio especial radares aereos', 0),
+(56, 'Lobby seguridad', 0),
+(57, 'Buffet', 1),
+(58, 'baño', 0);
 
 -- --------------------------------------------------------
 
@@ -183,7 +217,7 @@ CREATE TABLE `super_administradores` (
 --
 
 INSERT INTO `super_administradores` (`id`, `usuario`, `pass`, `token`) VALUES
-(1, 'admin', 'admin', 1234);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1234);
 
 -- --------------------------------------------------------
 
@@ -195,7 +229,7 @@ CREATE TABLE `vuelos` (
   `id` int(11) NOT NULL,
   `id_avion` int(11) NOT NULL,
   `id_administrador` int(11) NOT NULL,
-  `empresa` text NOT NULL,
+  `id_empresa` int(11) NOT NULL,
   `destino` text NOT NULL,
   `escalas` int(2) NOT NULL,
   `pasajes` int(11) NOT NULL,
@@ -203,8 +237,6 @@ CREATE TABLE `vuelos` (
   `horarioSalida` text NOT NULL,
   `fechaArribo` date NOT NULL,
   `horarioArribo` text NOT NULL,
-  `pago` text NOT NULL,
-  `precio` int(11) NOT NULL,
   `tipo_administrador` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -212,11 +244,16 @@ CREATE TABLE `vuelos` (
 -- Volcado de datos para la tabla `vuelos`
 --
 
-INSERT INTO `vuelos` (`id`, `id_avion`, `id_administrador`, `empresa`, `destino`, `escalas`, `pasajes`, `fechaSalida`, `horarioSalida`, `fechaArribo`, `horarioArribo`, `pago`, `precio`, `tipo_administrador`) VALUES
-(59, 5, 37, 'british', 'ES', 2, 250, '2017-04-13', '03:05', '2017-04-18', '17:05', 'amex', 15000, 'adminVuelos'),
-(60, 6, 37, 'air', 'YE', 4, 150, '2017-04-02', '01:00', '2017-04-26', '01:00', 'naranja', 13000, 'adminVuelos'),
-(61, 2, 37, 'aerolineas', 'ES', 2, 200, '2017-04-04', '01:00', '2017-04-11', '02:00', 'amex', 100, 'adminVuelos'),
-(62, 11, 37, 'american', 'CX', 2, 150, '2017-04-12', '02:02', '2018-01-01', '23:01', 'master', 123, 'adminVuelos');
+INSERT INTO `vuelos` (`id`, `id_avion`, `id_administrador`, `id_empresa`, `destino`, `escalas`, `pasajes`, `fechaSalida`, `horarioSalida`, `fechaArribo`, `horarioArribo`, `tipo_administrador`) VALUES
+(77, 25, 37, 15, 'KI', 3, 120, '2017-05-17', '00:00', '2017-05-25', '00:00', 'adminVuelos'),
+(78, 12, 37, 8, 'DM', 4, 20, '2017-05-16', '00:00', '2017-05-17', '00:00', 'adminVuelos'),
+(79, 14, 37, 11, 'JP', 2, 45, '2017-05-16', '00:00', '2017-05-17', '00:00', 'adminVuelos'),
+(80, 24, 37, 5, 'PR', 2, 185, '2017-05-16', '00:00', '2017-05-17', '00:00', 'adminVuelos'),
+(81, 2, 37, 1, 'ER', 2, 100, '2017-05-10', '00:00', '2017-05-18', '00:00', 'adminVuelos'),
+(82, 14, 37, 13, 'GY', 3, 50, '2017-05-09', '02:01', '2017-05-18', '05:01', 'adminVuelos'),
+(83, 16, 37, 4, 'MN', 1, 100, '2017-05-09', '01:58', '2017-05-17', '00:00', 'adminVuelos'),
+(84, 16, 116, 15, 'DK', 2, 123, '2017-05-09', '00:00', '2017-05-17', '00:00', 'adminVuelos'),
+(85, 2, 116, 1, 'ES', 2, 34, '2017-05-15', '04:04', '2017-05-16', '04:04', 'adminVuelos');
 
 -- --------------------------------------------------------
 
@@ -226,7 +263,7 @@ INSERT INTO `vuelos` (`id`, `id_avion`, `id_administrador`, `empresa`, `destino`
 
 CREATE TABLE `zonas` (
   `id_zona` int(11) NOT NULL,
-  `nombre` text NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `cubierta` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -243,7 +280,15 @@ INSERT INTO `zonas` (`id_zona`, `nombre`, `cubierta`) VALUES
 (8, 'Buffete 2', 1),
 (9, 'Buffete 3', 1),
 (10, 'Patio de comidas', 1),
-(11, 'Free Shop', 1);
+(11, 'Free Shop', 1),
+(12, 'Freeshop 1', 0),
+(13, 'Freeshop 2', 0),
+(15, 'Freeshop 3', 0),
+(16, 'Migraciones', 1),
+(19, 'Depto Limpieza', 1),
+(20, 'Hangar 1', 1),
+(21, 'Hangar 2', 1),
+(22, 'Hangar 3', 1);
 
 --
 -- Índices para tablas volcadas
@@ -277,16 +322,25 @@ ALTER TABLE `empleados`
   ADD KEY `admin` (`id_administrador`);
 
 --
+-- Indices de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `empresa` (`empresa`);
+
+--
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`id_evento`);
+  ADD PRIMARY KEY (`id_evento`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`id_servicio`);
+  ADD PRIMARY KEY (`id_servicio`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `super_administradores`
@@ -300,13 +354,15 @@ ALTER TABLE `super_administradores`
 ALTER TABLE `vuelos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `vuelos_ibfk_1` (`id_administrador`),
-  ADD KEY `vuelos_ibfk_2` (`id_avion`);
+  ADD KEY `vuelos_ibfk_2` (`id_avion`),
+  ADD KEY `id_empresa` (`id_empresa`);
 
 --
 -- Indices de la tabla `zonas`
 --
 ALTER TABLE `zonas`
-  ADD PRIMARY KEY (`id_zona`);
+  ADD PRIMARY KEY (`id_zona`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -316,27 +372,32 @@ ALTER TABLE `zonas`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT de la tabla `aviones`
 --
 ALTER TABLE `aviones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+--
+-- AUTO_INCREMENT de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT de la tabla `super_administradores`
 --
@@ -346,12 +407,12 @@ ALTER TABLE `super_administradores`
 -- AUTO_INCREMENT de la tabla `vuelos`
 --
 ALTER TABLE `vuelos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT de la tabla `zonas`
 --
 ALTER TABLE `zonas`
-  MODIFY `id_zona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_zona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Restricciones para tablas volcadas
 --
@@ -367,7 +428,8 @@ ALTER TABLE `empleados`
 --
 ALTER TABLE `vuelos`
   ADD CONSTRAINT `vuelos_ibfk_1` FOREIGN KEY (`id_administrador`) REFERENCES `administradores` (`id_administrador`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `vuelos_ibfk_2` FOREIGN KEY (`id_avion`) REFERENCES `aviones` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `vuelos_ibfk_2` FOREIGN KEY (`id_avion`) REFERENCES `aviones` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `vuelos_ibfk_3` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
