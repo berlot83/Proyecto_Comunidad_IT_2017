@@ -24,7 +24,7 @@ El trabajo mismo tiene los siguientes contenidos:
                   e) Mysql-connector-5.1.16
                   f) Gson
                   
-   Link al archivo pom.xml con todas las dependencias utilizadas:
+   Link al archivo pom.xml con todas las dependencias maven utilizadas:
        - https://github.com/berlot83/Proyecto_Final_ComunidadIT/blob/master/Proyecto_Final_AAB/pom.xml
         
    • Javascript AJAX para llamadas al servidor.
