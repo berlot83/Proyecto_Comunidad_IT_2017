@@ -32,7 +32,7 @@ public class ValidarCuit {
 	//No funciona porque el cuit no soporta más de 10 caracteres, reverer o cambiar a otro tipo de dato.
 	public static boolean validarNumerosCuit(String cuit){
 
-	int numeros;
+	int numeros=0;
 	
 		try
 			{

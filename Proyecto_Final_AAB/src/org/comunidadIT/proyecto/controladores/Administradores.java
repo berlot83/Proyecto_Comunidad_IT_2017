@@ -1,26 +1,21 @@
 package org.comunidadIT.proyecto.controladores;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.comunidadIT.proyecto.accesoDatos.ConexionAeropuerto;
 import org.comunidadIT.proyecto.entidades.Administrador;
+import org.comunidadIT.proyecto.validaciones.EncriptarPass;
+
 import com.google.gson.Gson;
-
-
 
 @Path("/administradores")
 public class Administradores {
@@ -71,7 +66,7 @@ public class Administradores {
 						ps.setString(2, nombre.trim().replaceAll(soloLetras, ""));
 						ps.setString(3, apellido.trim().replaceAll(soloLetras, ""));
 						ps.setString(4, usuario.trim().replaceAll(numerosLetras, ""));
-						ps.setString(5, pass.trim().replaceAll(numerosLetras, ""));
+						ps.setString(5, EncriptarPass.md5(pass.trim().replaceAll(numerosLetras, "")));
 						ps.setString(6, email.trim().replaceAll(soloEmail, ""));
 						ps.setString(7, direccion.trim().replaceAll(numerosLetras, ""));
 						ps.executeUpdate();

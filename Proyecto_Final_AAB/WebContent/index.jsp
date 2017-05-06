@@ -8,6 +8,7 @@
 		<title>Administrador de Aeropuertos</title>
 		<link rel="stylesheet" type="text/css" href="src/css/index.css">
 		<script type="text/javascript" src="src/js/index.js"></script>
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon.png"/>
 		
 </head>
 	<body>

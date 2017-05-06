@@ -10,29 +10,22 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.comunidadIT.proyecto.accesoDatos.AutenticarUsuario;
 import org.comunidadIT.proyecto.accesoDatos.ConexionAeropuerto;
 import org.comunidadIT.proyecto.entidades.Empleado;
+import org.comunidadIT.proyecto.validaciones.ValidarCaracteres;
 import org.comunidadIT.proyecto.validaciones.ValidarCuit;
 import org.comunidadIT.proyecto.validaciones.ValidarDni;
-
 import com.google.gson.Gson;
 
 @Path("/empleados")
 public class Empleados {
 	
-	String numerosLetras= new String("[^a-zA-Z0-9]+");
-	String soloLetras= new String("[^a-zA-Z]+");
-	String soloEmail= new String("[^a-zA-Z0-9@._-]");
-	
-		//falta crear un jsp y prbarlo
 		@POST
 		@Path("/insertarEmpleado")
 		@Produces(MediaType.APPLICATION_JSON)
@@ -67,9 +60,10 @@ public class Empleados {
 							
 							//Averiguamos el id del usuario administrador
 							Statement stmt;
-							String sql1= "select id_administrador from administradores where usuario='"+usuario+"' ";
+							String sql1= "SELECT id_administrador FROM administradores WHERE usuario='"+usuario+"' ";
 							stmt= con.createStatement();
 							ResultSet rs= stmt.executeQuery(sql1);
+							
 							while (rs.next())
 							{
 								int_id= rs.getInt("id_administrador");
@@ -82,10 +76,10 @@ public class Empleados {
 								st.setString(1, dni);
 								st.setString(2, cuit);
 								st.setString(3, nacimiento);
-								st.setString(4, nombre.trim().replaceAll(soloLetras, ""));
-								st.setString(5, apellido.trim().replaceAll(soloLetras, ""));
-								st.setString(6, direccion.trim().replaceAll(numerosLetras, ""));
-								st.setString(7, cargo.trim().replaceAll(numerosLetras, ""));
+								st.setString(4, ValidarCaracteres.soloLetras(nombre));
+								st.setString(5, ValidarCaracteres.soloLetras(apellido));
+								st.setString(6, ValidarCaracteres.numerosLetras(direccion));
+								st.setString(7, ValidarCaracteres.numerosLetras(cargo));
 								st.setFloat(8, sueldo_cargo);
 								st.setFloat(9, cargas_sociales);
 								st.setFloat(10, vacaciones);
@@ -116,7 +110,7 @@ public class Empleados {
 			
 			//Creamos la lista y le ponemos las variables que a su vez están conectadas al construcctor de la Case Empleados
 			List<Empleado> lista= new ArrayList<>();
-				lista.add(new Empleado(personaId, dni, cuit, nacimiento, nombre.trim().replaceAll(soloLetras, ""), apellido.trim().replaceAll(soloLetras, ""), direccion.trim().replaceAll(numerosLetras, ""), cargo.trim().replaceAll(numerosLetras, ""), sueldo_cargo, cargas_sociales, vacaciones, sueldo_neto ));
+				lista.add(new Empleado(personaId, dni, cuit, nacimiento, ValidarCaracteres.soloLetras(nombre), ValidarCaracteres.numerosLetras(apellido), ValidarCaracteres.numerosLetras(direccion), ValidarCaracteres.numerosLetras(cargo), sueldo_cargo, cargas_sociales, vacaciones, sueldo_neto ));
 				
 					//Creamos un object Gson() que nos permite usar el toJson()
 					Gson gson = new Gson();
@@ -129,16 +123,15 @@ public class Empleados {
 		}
 		
 		
-		//TODO Mejorar la query con %LIKE%
 		//Consulta de empleados de la DB con nombre y apellido como parámetros
-		@GET
-		@Path("/consultaNombreEmpleado")
+		@POST
+		@Path("/consultaApellidoEmpleado")
 		@Produces(MediaType.APPLICATION_JSON)
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-		public String consultaNombreEmpleado(@QueryParam("usuario") String usuario, @QueryParam("pass") String pass, @QueryParam("nombre") String nombre, @QueryParam("apellido") String apellido){
+		public String consultaNombreEmpleado(@FormParam("usuario") String usuario, @FormParam("pass") String pass, @FormParam("apellido") String apellido){
 		
 			//Para los Resultset
-			int str_personaId;
+			int int_id_empleado;
 			String str_dni;
 			String str_cuit;
 			String str_nacimiento=null;
@@ -162,11 +155,11 @@ public class Empleados {
 				ConexionAeropuerto c= new ConexionAeropuerto();
 				Connection con= c.connectarAhora();
 				
-				if(con!=null) //&& AutenticarUsuario.autenticarUsuario(usuario, pass)==true)
+				if(con!=null && AutenticarUsuario.autenticarUsuario(usuario, pass)==true)
 						{
 							System.out.println("Funciona el try and catch");
 							
-							String sql="select * from empleados where apellido='"+apellido+"' ";
+							String sql="SELECT * FROM empleados WHERE apellido LIKE '%"+apellido+"%' AND usuario_administrador='"+usuario+"' ";
 							
 							Statement st= con.createStatement();
 							
@@ -174,7 +167,7 @@ public class Empleados {
 							
 							
 							while(rs.next())
-							{	 str_personaId= rs.getInt("personaId");
+							{	 int_id_empleado= rs.getInt("id_empleado");
 								 str_dni= rs.getString("dni");
 								 str_cuit= rs.getString("cuit");
 								 str_nacimiento= rs.getString("nacimiento");
@@ -191,11 +184,12 @@ public class Empleados {
 								System.out.println(str_nombre+" "+str_apellido+" "+str_direccion+" "+str_cargo+" "+str_sueldo_cargo+" "+str_cargas_sociales+" "+str_vacaciones+" "+str_sueldo_neto);
 								
 								//Adherimos a la lista una fila nueva con una columna nueva.
-								listado.add(new Empleado(str_personaId, str_dni, str_cuit, str_nacimiento, str_nombre, str_apellido, str_direccion, str_cargo, str_sueldo_cargo, str_cargas_sociales, str_vacaciones, str_sueldo_neto));
+								listado.add(new Empleado(int_id_empleado, str_dni, str_cuit, str_nacimiento, str_nombre, str_apellido, str_direccion, str_cargo, str_sueldo_cargo, str_cargas_sociales, str_vacaciones, str_sueldo_neto));
 								
-								//Actualizamos el String del Json sin crearlo nuevamente.
-								stringJson= gson.toJson(listado);
 							}
+							
+							//Actualizamos el String del Json sin crearlo nuevamente.
+							stringJson= gson.toJson(listado);
 							
 						} 
 				else
@@ -211,7 +205,6 @@ public class Empleados {
 						}
 			return stringJson;
 			}
-		
 		
 		
 		//Consulta de todos los Empleados de la DB
@@ -250,7 +243,7 @@ public class Empleados {
 							{
 								System.out.println("Funciona el try and catch");
 								
-								String sql="select * from empleados where usuario_administrador='"+usuario+"' ";
+								String sql="SELECT * FROM empleados WHERE usuario_administrador='"+usuario+"' ";
 								
 								Statement st= con.createStatement();
 								
@@ -278,9 +271,9 @@ public class Empleados {
 									//Adherimos a la lista una fila nueva con una columna nueva.
 									listado.add(new Empleado(int_id_empleado, str_dni, str_cuit, str_nacimiento, str_nombre, str_apellido, str_direccion, str_cargo, str_sueldo_cargo, str_cargas_sociales, str_vacaciones, str_sueldo_neto));
 									
-									//Actualizamos el String del Json sin crearlo nuevamente.
-									stringJson= gson.toJson(listado);
 								}
+								//Actualizamos el String del Json sin crearlo nuevamente.
+								return stringJson= gson.toJson(listado);
 								
 							} 
 					else
@@ -289,13 +282,14 @@ public class Empleados {
 								return "Algo Salió mal no se pueden ver los datos de la consulta.";
 							}
 					}
-					catch (Exception e) 
+					catch (Exception e)
 				
 							{
 								e.printStackTrace();
 							}
+				//return stringJson;
 				return stringJson;
-				}
+			}
 			
 			
 			//barrar empleado de la base de datos
@@ -359,13 +353,13 @@ public class Empleados {
 					if(con!=null && AutenticarUsuario.autenticarUsuario(usuario, pass)==true)
 						{
 						PreparedStatement ps;
-						String sql= "update empleados set nombre=?, apellido=?, cargo=?, direccion=?, sueldo_cargo=?, cargas_sociales=?, vacaciones=?, sueldo_neto=? where id_empleado=?";
+						String sql= "UPDATE empleados SET nombre=?, apellido=?, cargo=?, direccion=?, sueldo_cargo=?, cargas_sociales=?, vacaciones=?, sueldo_neto=? WHERE id_empleado=?";
 						ps= con.prepareStatement(sql);
 						
-						ps.setString(1, nombre);
-						ps.setString(2, apellido);
-						ps.setString(3, direccion);
-						ps.setString(4, cargo);
+						ps.setString(1, ValidarCaracteres.soloLetras(nombre));
+						ps.setString(2, ValidarCaracteres.soloLetras(apellido));
+						ps.setString(3, ValidarCaracteres.numerosLetras(direccion));
+						ps.setString(4, ValidarCaracteres.numerosLetras(cargo));
 						ps.setFloat(5, sueldo_cargo);
 						ps.setFloat(6, cargas_sociales);
 						ps.setFloat(7, vacaciones);

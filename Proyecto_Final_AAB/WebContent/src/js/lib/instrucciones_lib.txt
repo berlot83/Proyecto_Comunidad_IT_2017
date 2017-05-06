@@ -1,0 +1,10 @@
+ 
+ ------------- Instrucciones librerías js ---------------
+ 
+ Colocar entre las etiquetas <head>Aquí va colocada la ruta del archivo .js que actúa "como librería"</head>.
+ 
+ El formato de ruta es el siguiente:
+ <script type="text/javascript" src="src/js/lib/nombreArchivo.js"></script>
+ 
+ Importante:
+ No modificar nada de dichos archivos.

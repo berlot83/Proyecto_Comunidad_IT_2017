@@ -1,7 +1,5 @@
 package org.comunidadIT.proyecto.entidades;
 
-import java.sql.Date;
-
 public class Evento {
 
 	protected int id_evento;

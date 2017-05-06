@@ -27,10 +27,9 @@ function regAdminReq(){
 	
 			xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				 
-				alert(xmlhttp.responseText);
-				alert(xmlhttp.status);
+
 				
+				//Comienzo de creación de respuesta en pantalla.
 				var tagElegido= document.getElementById("div2");
 				var newul= document.createElement("ul");
 				tagElegido.appendChild(newul);
@@ -51,6 +50,13 @@ function regAdminReq(){
 									newul.innerHTML="Los datos fueron ingresados con exito para realizar insercciones a su base de datos ingrese a: <br> <a href='adminRH.jsp'>Panel de control</a>";
 								}
 				
+						//Comienza código de limpieza
+						var body= document.getElementById("body");
+							body.onclick= function(){
+							tagElegido.innerHTML = '';
+						}
+						//Termina código de limpieza
+						
 			    	}
 			
 				}

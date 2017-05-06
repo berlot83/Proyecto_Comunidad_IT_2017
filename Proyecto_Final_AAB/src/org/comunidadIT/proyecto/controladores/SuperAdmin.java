@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.comunidadIT.proyecto.accesoDatos.AutenticarSuperAdministrador;
 import org.comunidadIT.proyecto.accesoDatos.ConexionAeropuerto;
 import org.comunidadIT.proyecto.entidades.Administrador;
+import org.comunidadIT.proyecto.validaciones.EncriptarPass;
 
 import com.google.gson.Gson;
 
@@ -46,7 +47,7 @@ public class SuperAdmin {
 	{
 		ConexionAeropuerto c= new ConexionAeropuerto();
 		Connection con= c.connectarAhora();
-		if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministrador(usuario, pass, token)==true)
+		if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministradorSimple(usuario, EncriptarPass.md5(pass))==true)
 		{
 			Statement st;
 			String sql= "SELECT * FROM administradores";
@@ -103,7 +104,7 @@ public class SuperAdmin {
 	{
 		ConexionAeropuerto c= new ConexionAeropuerto();
 		Connection con= c.connectarAhora();
-		if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministrador(usuario, pass, token)==true)
+		if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministradorSimple(usuario, EncriptarPass.md5(pass))==true)
 		{
 			
 			Statement st;
@@ -151,7 +152,7 @@ public class SuperAdmin {
 			ConexionAeropuerto c= new ConexionAeropuerto();
 			Connection con= c.connectarAhora();
 			
-			if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministrador(usuario, pass, token)==true)
+			if(con != null && AutenticarSuperAdministrador.autenticarSuperAdministrador(usuario, EncriptarPass.md5(pass), token)==true)
 		
 			{
 				if(usuario.equalsIgnoreCase("") && pass.equalsIgnoreCase(""))
@@ -199,7 +200,7 @@ public class SuperAdmin {
 			ConexionAeropuerto c= new ConexionAeropuerto();
 			Connection con= c.connectarAhora();
 			
-			if(con!=null && AutenticarSuperAdministrador.autenticarSuperAdministrador(usuario, pass, token)==true)
+			if(con!=null && AutenticarSuperAdministrador.autenticarSuperAdministradorSimple(usuario, EncriptarPass.md5(pass))==true)
 		
 			{
 				if(usuario.equalsIgnoreCase("") && pass.equalsIgnoreCase(""))

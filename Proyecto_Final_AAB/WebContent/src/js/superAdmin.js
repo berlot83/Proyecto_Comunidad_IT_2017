@@ -78,6 +78,16 @@ function verAdministradores(){
 					newtdDireccion.appendChild(textoDireccion);
 			}
 		}
+		
+		//Comienza código de limpieza;
+		var tabla= document.getElementById("tablaResultSet");
+		var body= document.getElementById("body");
+			body.onclick= function(){
+			tabla.innerHTML = '';
+	}
+		//Termina código de limpieza
+		
+		
 	}
 	xhr.open("POST",url,true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -169,6 +179,15 @@ function verTipoAdministradores(){
 			}
 			
 		}
+		
+		//Comienza código de limpieza;
+		var tabla= document.getElementById("tablaResultSet");
+		var body= document.getElementById("body");
+			body.onclick= function(){
+			tabla.innerHTML = '';
+	}
+		//Termina código de limpieza
+		
 	}
 	var tipoAdmin= document.getElementById("tipoAdmin");
 	xhr.open("POST",url,true);
@@ -334,9 +353,12 @@ function selectIdAdminVuelos(){
 function acciones(){
 	
 	var menu= document.getElementById("menu");
+	var token= document.getElementById("token");
 	
 		if(menu.value=="seleccione"){
 			//no deberia mostrar nada
+			token.disabled=false;
+			token.style.background='pink';
 		}
 		
 		if(menu.value=="consulta"){
@@ -350,6 +372,9 @@ function acciones(){
 				
 			var tablaVerAdministradores= document.getElementById("verAdministradores");
 				tablaVerAdministradores.style.display= 'block';
+				
+				token.disabled=true;
+				token.style.background='lightgrey';
 			
 		}
 		
@@ -364,6 +389,9 @@ function acciones(){
 			
 			var tablaEliminarAdministrador= document.getElementById("eliminarAdmin");
 				tablaEliminarAdministrador.style.display= 'none';
+				
+				token.disabled=true;
+				token.style.background='lightgrey';
 		}
 		
 		if(menu.value=="eliminar"){
@@ -378,7 +406,10 @@ function acciones(){
 			var tablaEliminarAdministrador= document.getElementById("eliminarAdmin");
 				tablaEliminarAdministrador.style.display= 'block';
 				
-				alert("Antes de eliminar un registro debe transferir:\n\nLos empleados de un adminRH a otro existente.\nLos vuelos de un adminVuelos a otro existente.\nLas zonas de cobertura de un adminSeg a otro existente.\n\nSi alguno de los registros no son transferidos la operacion no podrá realizarse, ya que para ser eliminados no tienen que tener registros a su cargo.")
+				token.disabled=false;
+				token.style.background='pink';
+				
+				alert("Antes de eliminar un registro debe transferir:\n\n• Los empleados de un adminRH a otro existente.\n• Los vuelos de un adminVuelos a otro existente.\n• Los adminSeg pueden ser borrados sin transferir ningún registro.\n\nSi alguno de los registros no son transferidos la operacion no podrá realizarse, ya que para ser eliminados no tienen que tener registros a su cargo.")
 			
 		}	
 }

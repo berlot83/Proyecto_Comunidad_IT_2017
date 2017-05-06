@@ -1,5 +1,6 @@
 package org.comunidadIT.proyecto.entidades;
 
+//Esta clase sólo existe para tener una clase abstracta en el proyecto, no es funcional al mismo.
 public abstract class Persona {
 	
 	protected String nombre;
@@ -24,8 +25,5 @@ public abstract class Persona {
 			public void setApellido(String apellido) {
 				this.apellido = apellido;
 			}
-	
-			
-			
-			 
+		 
 }

@@ -23,7 +23,14 @@ function loginSuperAdmin(){
 				
 				var link2= document.getElementById("super").innerHTML= "Bienvenido siga el siguiente enlace:<br><a href='superAdmin.jsp'>Panel de Control</a>";
 				
-				div.appendChild(link2);
+				//div.appendChild(link2); Por alguna razón genera error. No debería
+				
+				//Inicio creación de imagen
+				var img= document.createElement("img");
+					img.setAttribute('src', 'src/img/mensajeOK.png');
+					div.appendChild(img);
+				//Final creación de imagen
+					
 			}
 			
 			else
@@ -62,7 +69,13 @@ function loginAdminRH(){
 			
 			var link= document.getElementById("adminRH").innerHTML= "Bienvenido siga el siguiente enlace:<br><a href='adminRH.jsp'>Panel de Control</a>";
 			
-			div.appendChild(link);
+			//div.appendChild(link); Por alguna razón genera error. No debería
+			
+			//Inicio creación de imagen
+			var img= document.createElement("img");
+				img.setAttribute('src', 'src/img/mensajeOK.png');
+				div.appendChild(img);
+			//Final creación de imagen
 		}
 		
 		else
@@ -102,7 +115,13 @@ function loginAdminSeg(){
 			
 			var link= document.getElementById("adminSeg").innerHTML= "Bienvenido siga el siguiente enlace:<br><a href='adminSeg.jsp'>Panel de Control</a>";
 			
-			div.appendChild(link);
+			//div.appendChild(link); Por alguna razón genera error. No debería
+			
+			//Inicio creación de imagen
+			var img= document.createElement("img");
+				img.setAttribute('src', 'src/img/mensajeOK.png');
+				div.appendChild(img);
+			//Final creación de imagen
 		}
 		
 		else
@@ -142,7 +161,13 @@ function loginAdminVuelos(){
 			
 			var link= document.getElementById("adminVuelos").innerHTML= "Bienvenido siga el siguiente enlace:<br><a href='adminVuelos.jsp'>Panel de Control</a>";
 			
-			div.appendChild(link);
+			//div.appendChild(link); Por alguna razón genera error. No debería
+			
+			//Inicio creación de imagen
+			var img= document.createElement("img");
+				img.setAttribute('src', 'src/img/mensajeOK.png');
+				div.appendChild(img);
+			//Final creación de imagen
 		}
 		
 		else

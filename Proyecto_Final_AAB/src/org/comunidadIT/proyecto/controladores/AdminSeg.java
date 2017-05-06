@@ -14,14 +14,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import org.comunidadIT.proyecto.accesoDatos.AutenticarAdministradorSeguridad;
-import org.comunidadIT.proyecto.accesoDatos.AutenticarAdministradorVuelo;
 import org.comunidadIT.proyecto.accesoDatos.ConexionAeropuerto;
 import org.comunidadIT.proyecto.entidades.Evento;
 import org.comunidadIT.proyecto.entidades.Servicio;
-import org.comunidadIT.proyecto.entidades.Vuelo;
 import org.comunidadIT.proyecto.entidades.Zona;
+import org.comunidadIT.proyecto.validaciones.ValidarCaracteres;
 import org.comunidadIT.proyecto.validaciones.ValidarFechaEvento;
 
 import com.google.gson.Gson;

@@ -7,11 +7,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="src/css/superAdmin.css">
 		<script type="text/javascript" src="src/js/superAdmin.js"></script>
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon.png"/>
 		<title>Super Administrador</title>
 
 </head>
 	
-<body onload="selectIdAdminRH(), selectIdAdminVuelos()">
+<body onload="selectIdAdminRH(), selectIdAdminVuelos()" id="body">
 	<div id="menus">
 	<a href="index.jsp">Inicio</a>
 	

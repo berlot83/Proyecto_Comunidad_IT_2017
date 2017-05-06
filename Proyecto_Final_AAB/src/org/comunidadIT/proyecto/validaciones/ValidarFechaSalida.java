@@ -4,8 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-//En proceso de estudio, no está aplicado
-//TODO Validar fechas del avión con otras para que no sean reasignados.
+//Valida la fecha de salida y arribo del avión para que la asignación no sea ni igual ni menor al mismo día.
 public class ValidarFechaSalida {
 
 	

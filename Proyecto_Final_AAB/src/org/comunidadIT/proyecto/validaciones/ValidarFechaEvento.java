@@ -1,6 +1,5 @@
 package org.comunidadIT.proyecto.validaciones;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

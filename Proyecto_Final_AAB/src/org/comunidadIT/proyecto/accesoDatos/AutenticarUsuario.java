@@ -1,22 +1,14 @@
 package org.comunidadIT.proyecto.accesoDatos;
 
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
-
-import org.comunidadIT.proyecto.entidades.Administrador;
-
-import com.sun.research.ws.wadl.Request;
+import org.comunidadIT.proyecto.validaciones.EncriptarPass;
 
 @Path("/validacionAdminRH")
 public class AutenticarUsuario {
@@ -42,7 +34,7 @@ public class AutenticarUsuario {
 					{
 						Statement st;
 						st=con.createStatement();
-						ResultSet rs= st.executeQuery("select usuario, pass from administradores where usuario= '" + usuario + "' and pass= '" + pass + "' and tipo_admin= 'adminRH' ");
+						ResultSet rs= st.executeQuery("select usuario, pass from administradores where usuario= '" + usuario + "' and pass= '" + EncriptarPass.md5(pass) + "' and tipo_admin= 'adminRH' ");
 						
 						while(rs.next())
 						{
@@ -51,7 +43,7 @@ public class AutenticarUsuario {
 									
 						}
 						
-								if(usuario.equals(str_usuario) && pass.equals(str_pass))
+								if(usuario.equals(str_usuario) && EncriptarPass.md5(pass).equals(str_pass))
 								{
 									System.out.println("Usuario: " + usuario + " Correcto.");
 									System.out.println("Password: " + pass + " Correcta.");
@@ -64,13 +56,11 @@ public class AutenticarUsuario {
 		    		//Falta un métedo para autenticar usuario y contraseña
 		    		//Falta código de Token
 		    		//Falta código de retorno Response.builter del Token
-		    		
-						Response.status(200).build();
+
 		    	}
 		    	catch(Exception e)
 		    	{
 		    		System.out.println("No tiene autorización para ingresar.");
-		    		Response.status(401).build();
 		    	}
 	    	
 	    	return autorizado;

@@ -7,9 +7,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="src/css/adminSeg.css">
 		<script type="text/javascript" src="src/js/adminSeg.js"></script>
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon.png"/>
 <title>Administrador de Seguridad General</title>
 </head>
-<body onload="selectServicio(), selectEvento(), selectZona()">
+<body onload="selectServicio(), selectEvento(), selectZona()" id="body">
 <a href="index.jsp">Inicio</a>
 	<div id="div1">
 		<h3>Valide sus datos como admin:</h3>
@@ -60,7 +61,7 @@
 		<table id="verTodosServicios">
 			<tr>
 				<td>
-					<input type="button" value="Ver servicios" onclick="verServicios()">
+					<input id="botonVerServicios" type="button" value="Ver servicios" onclick="verServicios(); return false;">
 				</td>
 			</tr>
 		</table>

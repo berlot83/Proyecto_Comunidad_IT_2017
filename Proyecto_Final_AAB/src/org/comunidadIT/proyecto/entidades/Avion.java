@@ -40,4 +40,9 @@ public class Avion {
 		this.matricula=matricula;
 	}
 	
+	public Avion(int id){
+		
+		this.id=id;
+	}
+	
 }

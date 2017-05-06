@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2017 a las 12:39:45
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 28-04-2017 a las 02:32:37
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,9 +42,9 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id_administrador`, `tipo_admin`, `nombre`, `apellido`, `usuario`, `pass`, `email`, `direccion`) VALUES
-(24, 'adminRH', 'Axel', 'Berlot', 'user', '1234', 'asd', 'asd'),
+(24, 'adminRH', 'Manuel', 'Manzanero', 'user', '1234', 'asd', 'asd'),
 (37, 'adminVuelos', 'pepe', 'argento', 'pepe', '1234', 'asd', 'asd'),
-(38, 'adminRH', 'Dana', 'Berlot', 'dana', '1234', 'asd', 'asd'),
+(38, 'adminRH', 'German', 'Gonzalez', 'dana', '1234', 'asd', 'asd'),
 (41, 'adminSeg', 'Pepa', 'Miranda', 'pepa', '1234', 'asd', 'asd');
 
 -- --------------------------------------------------------
@@ -73,7 +73,9 @@ INSERT INTO `aviones` (`id`, `tipo_avion`, `matricula`, `cantidad_pasajeros`) VA
 (12, 'C-135', 'CV-435', 35),
 (13, 'Fokker-27', 'FO-125', 25),
 (14, 'C-130H', 'CH-230', 60),
-(15, 'cessna', 'CS-450', 4);
+(15, 'cessna', 'CS-450', 4),
+(16, 'Super Jumbo', 'SJ-357', 390),
+(17, 'Cessna-182', 'CS-182', 4);
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,13 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id_empleado`, `dni`, `cuit`, `nacimiento`, `nombre`, `apellido`, `direccion`, `cargo`, `sueldo_cargo`, `cargas_sociales`, `vacaciones`, `sueldo_neto`, `id_administrador`, `tipo_administrador`, `usuario_administrador`) VALUES
-(140, 30158619, 20301586192, '2017-04-11', 'asd', 'asd', 'asd', 'asd', 123, 20.91, 4.92, 97.17, 38, 'adminRH', 'user');
+(140, 30158619, 20301586192, '2017-04-11', 'asd', 'asd', 'asd', 'asd', 123, 20.91, 4.92, 97.17, 38, 'adminRH', 'user'),
+(142, 12345673, 9123456789, '2017-04-12', 'dfg', 'dfg', 'dfg', 'dfg', 56566700, 9616330, 2262670, 44687700, 24, 'adminRH', 'user'),
+(143, 25345123, 20123456784, '1994-07-14', 'Maria', 'Colombraro', 'Colombres', 'Encargada', 10000, 1700, 400, 7900, 24, 'adminRH', 'user'),
+(144, 25546123, 23123456794, '1994-07-12', 'Pedro', 'Gimenez', 'SanJuan', 'Seguridad', 9500, 1615, 380, 7505, 24, 'adminRH', 'user'),
+(145, 25546145, 23123456732, '1992-09-15', 'Marcelo', 'Cohelo', 'Directorio', 'Balijero', 25000, 4250, 1000, 19750, 24, 'adminRH', 'user'),
+(147, 25546115, 23123456737, '1992-09-17', 'Pablo', 'Pereyra', 'Independencia', 'Balijero', 25000, 4250, 1000, 19750, 24, 'adminRH', 'user'),
+(148, 25346715, 26123456747, '1989-02-07', 'Gisela', 'Monteagudo', 'Peron1025', 'Recepcionista', 23000, 3910, 920, 18170, 24, 'adminRH', 'user');
 
 -- --------------------------------------------------------
 
@@ -126,7 +134,8 @@ INSERT INTO `eventos` (`id_evento`, `nombre`, `fecha`) VALUES
 (2, 'GimGisell', '2017-04-20'),
 (4, 'Embajador Chino', '2017-04-29'),
 (5, 'asd', '2017-04-26'),
-(6, 'sd', '2017-04-24');
+(6, 'sd', '2017-04-24'),
+(7, 'ert', '2017-04-28');
 
 -- --------------------------------------------------------
 
@@ -150,7 +159,11 @@ INSERT INTO `servicios` (`id_servicio`, `nombre`, `activo`) VALUES
 (38, 'Antidrogas', 1),
 (41, 'Megacanje', 1),
 (43, 'AntiBombas', 0),
-(44, 'Hospitalario', 1);
+(44, 'Hospitalario', 1),
+(45, 'Policía aduanera', 1),
+(46, 'Servicio especial de perros', 1),
+(47, 'Guardaespaldas', 0),
+(48, 'Bomberos voluntarios', 0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +215,8 @@ CREATE TABLE `vuelos` (
 INSERT INTO `vuelos` (`id`, `id_avion`, `id_administrador`, `empresa`, `destino`, `escalas`, `pasajes`, `fechaSalida`, `horarioSalida`, `fechaArribo`, `horarioArribo`, `pago`, `precio`, `tipo_administrador`) VALUES
 (59, 5, 37, 'british', 'ES', 2, 250, '2017-04-13', '03:05', '2017-04-18', '17:05', 'amex', 15000, 'adminVuelos'),
 (60, 6, 37, 'air', 'YE', 4, 150, '2017-04-02', '01:00', '2017-04-26', '01:00', 'naranja', 13000, 'adminVuelos'),
-(61, 2, 37, 'aerolineas', 'ES', 2, 200, '2017-04-04', '01:00', '2017-04-11', '02:00', 'amex', 100, 'adminVuelos');
+(61, 2, 37, 'aerolineas', 'ES', 2, 200, '2017-04-04', '01:00', '2017-04-11', '02:00', 'amex', 100, 'adminVuelos'),
+(62, 11, 37, 'american', 'CX', 2, 150, '2017-04-12', '02:02', '2018-01-01', '23:01', 'master', 123, 'adminVuelos');
 
 -- --------------------------------------------------------
 
@@ -221,7 +235,6 @@ CREATE TABLE `zonas` (
 --
 
 INSERT INTO `zonas` (`id_zona`, `nombre`, `cubierta`) VALUES
-(2, 'Lobby', 0),
 (3, 'Pista cuadrante 1', 0),
 (4, 'Pista cuadrante 2', 0),
 (5, 'Pista cuadrante 3', 0),
@@ -303,27 +316,27 @@ ALTER TABLE `zonas`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `aviones`
 --
 ALTER TABLE `aviones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT de la tabla `super_administradores`
 --
@@ -333,7 +346,7 @@ ALTER TABLE `super_administradores`
 -- AUTO_INCREMENT de la tabla `vuelos`
 --
 ALTER TABLE `vuelos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT de la tabla `zonas`
 --

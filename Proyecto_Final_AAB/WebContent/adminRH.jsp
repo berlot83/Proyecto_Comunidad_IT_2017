@@ -7,9 +7,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="src/css/adminHR.css">
 		<script type="text/javascript" src="src/js/adminRH.js"></script>
+		<script type="text/javascript" src="src/js/lib/papaparse.min.js"></script>
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon.png"/>
 <title>Administrador de R.H.</title>
 </head>
-<body>
+<body id="body">
 
 <a href="index.jsp">Inicio</a>
 	<div id="div1"></div>
@@ -53,10 +55,38 @@
 					</select>
 				</td>
 			</tr>
+			</table>
+			
+			<br>
+			
+			<table id="botonVerEmpleados" style='display:none;'>
 			
 			<tr>
 				<td>
-						<input id="botonVerEmpleados" type="button" value="Ver Todos los empleados" onclick="verEmpleados()" style='display:none;'>
+					<label>Ver todos:</label>
+				</td>
+				
+				<td>
+					<label>Descargar cvs:</label>
+				</td>
+				
+				<td>
+					<label>Buscar por apellido:</label>
+				</td>
+			
+			</tr>
+			
+			<tr>
+				<td>
+						<input id="botonVerEmpleados" type="button" value="Ver Todos los empleados" onclick="verEmpleados()">
+				</td>
+				
+				<td>
+						<input id="botonCVSEmpleados" type="button" value="Descargar tabla empleados" onclick="descargarCVSempleados()">
+				</td>
+				
+				<td>
+						<input id="buscarApellido" type="text" placeholder="Descargar tabla empleados" onkeypress="consultaApellidoEmpleado()">
 				</td>
 			</tr>
 				
@@ -81,11 +111,11 @@
 				
 				<tr>
 					<td>
-						<input id="dni" name="dni" type="number" min=0 maxlength=11><br/>
+						<input id="dni" name="dni" type="number" min=0 maxlength=11 placeholder=" - - - - - 8 Dígitos - - - - - "><br/>
 					</td>
 					
 					<td>
-						<input id="cuit" name="cuit" type="number" min=0 maxlength=11><br/>
+						<input id="cuit" name="cuit" type="number" min=0 maxlength=11 placeholder=" - - - - - 11 Dígitos - - - - - "><br/>
 					</td>
 					
 					<td>
@@ -270,7 +300,7 @@
 					</td>
 				
 					<td>
-						<input id="modificarSueldo_cargo" name="sueldo_cargo" type="number" step="0.01""><br/>
+						<input id="modificarSueldo_cargo" name="sueldo_cargo" type="number" step="0.01"><br/>
 					</td>
 					
 					<td>
@@ -322,6 +352,5 @@
 	<div id="div3">
 			<table id="ulTabla"></table>
 	</div>
-
 </body>
 </html>

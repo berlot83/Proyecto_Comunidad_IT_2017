@@ -7,8 +7,9 @@
 		<title>Página de registro de Administrador de Aeropuertos 1.0</title>
 		<link rel="stylesheet" type="text/css" href="src/css/regAdmin.css">
 		<script type="text/javascript" src="src/js/regAdmin.js"></script>
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon.png"/>
 </head>
-<body>
+<body id="body">
 
 <a href="index.jsp">Inicio</a>
 

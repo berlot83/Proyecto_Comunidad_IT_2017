@@ -1,24 +1,270 @@
 
-function consultaNombreEmpleado(){
+function consultaApellidoEmpleado(){
 	var usuario= document.getElementById("usuario");
 	var pass= document.getElementById("pass");
-	var apellido= document.getElementById("apellido");
+	var apellido= document.getElementById("buscarApellido");
 	
 	var xmlhttp = new XMLHttpRequest();
-	var url= "/Proyecto_Final_AAB/rest/empleados/consultaNombreEmpleado";
+	var url= "/Proyecto_Final_AAB/rest/empleados/consultaApellidoEmpleado";
+	
+	if(usuario=="" && pass==""){
+		
+		alert("Los campos 'usuario' y 'pass' no pueden quedar en blanco.")
+
+	}
+else
+	{
 	
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			 
-			alert(xmlhttp.responseText);
+			
+			
+	//Inicio de tabla de búsqueda por apellido.
+			//Creación de títulos.
+			//Elegimos el elemento donde Totos los 'td' van a ser adheridos.
+			var	ulElegido= document.getElementById("ulTabla");
+			
+			var cabecera = ["-ID-", "Dni", "CUIT", "Fecha nac.", "Nombre", "apellido", "direccion", "Cargo", "sueldo cargo", "Cargas sociales", "vacaciones", "Sueldo neto"];
+			
+			for( var i=0; i < cabecera.length; i++)
+			{
+					var	ulElegido= document.getElementById("ulTabla");
+					
+					var crearTitulos=document.createElement("td");
+					
+					var textoNombre= document.createTextNode(cabecera[i]);
+					
+					crearTitulos.appendChild(textoNombre);
+					
+					ulElegido.appendChild(crearTitulos).style.border = "solid yellow";
+			}
+
+					
+					//Esta es la respuesta del servidor, sobre esta recaen todas las acciones.
+					var datos= xmlhttp.responseText;
+					
+					//Parseamos los datos
+					var parseDatos= JSON.parse(datos);
+					
+			
+					//Iteramos sobre la respuesta del JSON
+					for(var i=0; i < xmlhttp.responseText.length; i++){
+				
+						
+						//Creamos un renglon por cada elemento que iteramos
+							var hilera= document.createElement("tr");
+							var	tablaElegida= document.getElementById("ulTabla");
+								tablaElegida.appendChild(hilera);
+					
+								
+						//personaId
+							//Creamos los td  que contendrán los resultados
+							var newtdpersonaId= document.createElement("td");
+								
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdpersonaId).style.border = "thin solid white";
+								
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoPersonaId= document.createTextNode(parseDatos[i].personaId);
+								
+							//Adherimos el texto ya creado a los td
+							newtdpersonaId.appendChild(textoPersonaId);
+								
+						
+						//Dni
+							//Creamos los td  que contendrán los resultados
+							var newtdDni= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdDni).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoDni= document.createTextNode(parseDatos[i].dni);
+							
+							//Adherimos el texto ya creado a los td
+							newtdDni.appendChild(textoDni);	
+							
+							
+						//Cuit
+							//Creamos los td  que contendrán los resultados
+							var newtdCuit= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdCuit).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoCuit= document.createTextNode(parseDatos[i].cuit);
+							
+							//Adherimos el texto ya creado a los td
+							newtdCuit.appendChild(textoCuit);
+							
+						//Nacimiento
+							//Creamos los td  que contendrán los resultados
+							var newtdNacimiento= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdNacimiento).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoNacimiento= document.createTextNode(parseDatos[i].nacimiento);
+							
+							//Adherimos el texto ya creado a los td
+							newtdNacimiento.appendChild(textoNacimiento);
+							
+								
+						//Nombre
+							//Creamos los td  que contendrán los resultados
+							var newtdNombre= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdNombre).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoNombre= document.createTextNode(parseDatos[i].nombre);
+							
+							//Adherimos el texto ya creado a los td
+							newtdNombre.appendChild(textoNombre);
+							
+							
+						//Apellido
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdApellido= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdApellido).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoApellido= document.createTextNode(parseDatos[i].apellido);
+							
+							//Adherimos el texto ya creado a los td
+							newtdApellido.appendChild(textoApellido);
+							
+							
+						//Direccion
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdDireccion= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdDireccion).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoDireccion= document.createTextNode(parseDatos[i].direccion);
+							
+							//Adherimos el texto ya creado a los td
+							newtdDireccion.appendChild(textoDireccion);
+											
+							
+						//Cargo
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdCargo= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdCargo).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoCargo= document.createTextNode(parseDatos[i].cargo);
+							
+							//Adherimos el texto ya creado a los td
+							newtdCargo.appendChild(textoCargo);
+							
+							
+						//Sueldo_cargo
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdSueldo_cargo= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdSueldo_cargo).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoSueldo_cargo= document.createTextNode(parseDatos[i].sueldo_cargo);
+							
+							//Adherimos el texto ya creado a los td
+							newtdSueldo_cargo.appendChild(textoSueldo_cargo);
+							
+							
+						//Cargas sociales
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdCargas_sociales= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdCargas_sociales).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoCargas_sociales= document.createTextNode(parseDatos[i].cargas_sociales);
+							
+							//Adherimos el texto ya creado a los td
+							newtdCargas_sociales.appendChild(textoCargas_sociales);
+							
+							
+						//Vacaciones
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdVacaciones= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdVacaciones).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoVacaciones= document.createTextNode(parseDatos[i].vacaciones);
+							
+							//Adherimos el texto ya creado a los td
+							newtdVacaciones.appendChild(textoVacaciones);
+							
+							
+						//Sueldo_neto
+							//Elegimos el elemento donde vamos a adherir los td nuevos
+							
+							//Creamos los td  que contendrán los resultados
+							var newtdSueldo_neto= document.createElement("td");
+							
+							//Adherimos los td a la tabla ya existente
+							ulElegido.appendChild(newtdSueldo_neto).style.border = "thin solid white";
+							
+							//Creamos el texto y aherimos las columnas parseadas
+							var textoSueldo_neto= document.createTextNode(parseDatos[i].sueldo_neto);
+							
+							//Adherimos el texto ya creado a los td
+							newtdSueldo_neto.appendChild(textoSueldo_neto);
+			
+						}
+				}
+					//Final tabla dinámica apellido empleados
+			
+						//Comienza código de limpieza
+						var	ulElegido= document.getElementById("ulTabla");
+						var body= document.getElementById("body");
+							body.onkeypress= function(){
+							ulElegido.innerHTML = '';
+					}
+						//Termina código de limpieza
+						
+						//Comienza código de limpieza
+						var	ulElegido= document.getElementById("ulTabla");
+						var body= document.getElementById("body");
+							body.onclick= function(){
+							ulElegido.innerHTML = '';
+					}
+						//Termina código de limpieza
+						
+			}
 		}
-		
-	}
 	
-	xmlhttp.open("GET", url, true);
+	xmlhttp.open("POST", url, true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("?usuario="+usuario.value+"&pass="+pass.value+"&apellido="+apellido.value);
+	xmlhttp.send("usuario="+usuario.value+"&pass="+pass.value+"&apellido="+apellido.value);
 }
+
 
 
 function insertarEmpleado(){
@@ -85,7 +331,6 @@ function verEmpleados(){
 		
 		xhr.onreadystatechange= function(){
 		if(this.readyState==4 && this.status==200){
-		
 			
 		//Creación de títulos
 		//Elegimos el elemento donde Totos los 'td' van a ser adheridos
@@ -304,23 +549,82 @@ function verEmpleados(){
 						//Adherimos el texto ya creado a los td
 						newtdSueldo_neto.appendChild(textoSueldo_neto);
 						
-						
-						//Reseteamos los campos
-						document.getElementById("usuario").value="";
-						document.getElementById("pass").value="";
+						/*
+							//Reseteamos los campos
+							document.getElementById("usuario").value="";
+							document.getElementById("pass").value="";
+						*/
 					}
-			
+				}
+		
+				//Comienza código de limpieza
+				var	ulElegido= document.getElementById("ulTabla");
+				var body= document.getElementById("body");
+					body.onclick= function(){
+					ulElegido.innerHTML = '';
 			}
+				//Termina código de limpieza
 			
 		}
 			
 	}
 	//Captamos el endpoint lo declaramos asincrono le decimos que se fije en los parametros que requiera y por último lo enviamos
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send("usuario="+usuario+"&pass="+pass);
 	
 }
+
+
+function descargarCVSempleados(){
+	
+	var usuario= document.getElementById("usuario").value;
+	var	pass= document.getElementById("pass").value;
+	
+	var xhr= new XMLHttpRequest();
+	url= "/Proyecto_Final_AAB/rest/empleados/consultaTodosEmpleados";
+	
+	
+	
+	if(usuario=="" && pass==""){
+		
+			alert("Los campos 'usuario' y 'pass' no pueden quedar en blanco.")
+	
+		}
+	else
+		{
+		
+		xhr.onreadystatechange= function(){
+		if(this.readyState==4 && this.status==200){
+			
+					//Inicio de Papaparse básico
+						var papa=Papa.unparse(xhr.responseText, {  
+							download: true,
+						    complete: function(results) {
+						        alert("Se parsearon los resultados", results);
+						    }
+						});
+					//Final de Papaparse básico
+						alert("Se comenzara la descarga del archivo CVS en su computadora. Dentro de excel puede convertir ese archivo a formato tabla de datos. Siga los siguientes pasos: 1) Seleccione las celdas a convertir. 2) Datos. 3) Texto en columnas. 4) Delimitar por ancho y comas. 5) Finalizar. ");
+					
+					
+					//Inicio de Comandos de descarga de archivo cvs.
+						var csvData = new Blob([papa], {type: 'text/csv;charset=utf-8;'});
+						var csvURL = window.URL.createObjectURL(csvData);
+						var tempLink = document.createElement('a');
+							tempLink.href = csvURL;
+							tempLink.setAttribute('download', 'Tabla_de_empleados.csv');
+							tempLink.click();
+					//Final de Comandos de descarga de archivo cvs.
+							
+				}
+			}
+		}
+		//Captamos el endpoint lo declaramos asincrono le decimos que se fije en los parametros que requiera y por último lo enviamos
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("usuario="+usuario+"&pass="+pass);
+	}
 
 
 //Borrar empleados de la Base de datos.
@@ -329,7 +633,6 @@ function borrarEmpleado(){
 	var usuario= document.getElementById("usuario").value;
 	var pass= document.getElementById("pass").value;
 	var id_empleado= document.getElementById("deleteId").value;
-	
 	
 						var xhr= new XMLHttpRequest();
 						var url= "/Proyecto_Final_AAB/rest/empleados/deleteEmpleado";
@@ -422,6 +725,9 @@ function acciones(){
 	
 	if(menu.value=="borrar"){
 		
+			var botonVerEmpleados= document.getElementById("botonVerEmpleados");
+				botonVerEmpleados.style.display= 'none';
+		
 			var tablaAgregarEmpleados= document.getElementById("botones");
 				tablaAgregarEmpleados.style.display= 'none';
 			
@@ -435,6 +741,9 @@ function acciones(){
 	
 	
 	if(menu.value=="modificar"){
+		
+			var botonVerEmpleados= document.getElementById("botonVerEmpleados");
+				botonVerEmpleados.style.display= 'none';
 		
 			var tablaModificarEmpleado= document.getElementById("tablaModificarEmpleado");
 				tablaModificarEmpleado.style.display='block';

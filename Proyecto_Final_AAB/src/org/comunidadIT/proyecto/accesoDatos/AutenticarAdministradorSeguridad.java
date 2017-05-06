@@ -4,13 +4,12 @@ package org.comunidadIT.proyecto.accesoDatos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import org.comunidadIT.proyecto.validaciones.EncriptarPass;
 
 @Path("/validacionAdminSeg")
 public class AutenticarAdministradorSeguridad {
@@ -36,7 +35,7 @@ public class AutenticarAdministradorSeguridad {
 				{
 					Statement st;
 					st=con.createStatement();
-					ResultSet rs= st.executeQuery("SELECT usuario, pass FROM administradores WHERE usuario= '" + usuario + "' AND pass= '" + pass + "' AND tipo_admin= 'adminSeg'  ");
+					ResultSet rs= st.executeQuery("SELECT usuario, pass FROM administradores WHERE usuario= '" + usuario + "' AND pass= '" + EncriptarPass.md5(pass) + "' AND tipo_admin= 'adminSeg'  ");
 					
 					while(rs.next())
 					{
@@ -45,7 +44,7 @@ public class AutenticarAdministradorSeguridad {
 								
 					}
 					
-							if(usuario.equals(str_usuario) && pass.equals(str_pass))
+							if(usuario.equals(str_usuario) && EncriptarPass.md5(pass).equals(str_pass))
 							{
 								System.out.println("Usuario: " + usuario + " Correcto.");
 								System.out.println("Password: " + pass + " Correcta.");
@@ -64,7 +63,7 @@ public class AutenticarAdministradorSeguridad {
     	
     	return autorizado;
     }
-
+    
 }
 
 

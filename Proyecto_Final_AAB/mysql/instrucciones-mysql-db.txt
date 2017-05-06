@@ -1,0 +1,27 @@
+
+ --- Esta información no es necesaria para el cliente, sólo es un backup de estructura por fallas en la DB, usar en caso de faltantes en la DB ---
+
+Listado de tablas:
+
+	• super_administradores. 
+	• administradores.
+	• empleados.
+	• vuelos.
+	• aviones.
+	• servicios.
+	• eventos.
+	• zonas.
+	
+	Columnas de cada tabla:
+		super_administradores 	---> id(int), usuario(text), pass(text).
+		administradores 		---> id_administrador(int), tipo_admin(varchar100), nombre(text), apellido(text), usuario(varchar100), email(text), direccion(text).
+		empleados 				---> id_empleado(int), dni(int8), cuit(bigint11), nacimiento(date), nombre(tinytext), apellido(tinytext), direccion(tinytext), cargo()tinytext, sueldo_cargo(float), cargas sociales(float), vacaciones(float), sueldo_neto(float), id_administrador(int), tipo_administrador(varchar100), usuario_administrador(varchar100).
+		vuelos					---> id(int), id_avion, id_administrador, empresa, destino, escalas, pasajes, fechaSalida, horarioSalida, fechaArribo, horarioArribo, pago, precio, tipo_administrador.
+		aviones					---> id, tipo_avion, matricula, cantidad_pasajeros.
+		servicios				---> id_servicio, nombre, activo.
+		eventos					---> id_evento, nombre, fecha.
+		zonas					---> id_zona, nombre, cubierta.
+		
+
+Importante: Hay dependencias entre las super_administradores y administradores para evitar eliminar empleados o vuelos que dependan de un administrador especial.
+		

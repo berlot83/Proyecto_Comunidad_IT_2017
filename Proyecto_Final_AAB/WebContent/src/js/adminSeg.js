@@ -18,10 +18,10 @@ function verServicios(){
 			xmlhttp.onreadystatechange= function(){
 				if(this.readyState==4 && this.status==200){
 				
-				
 			//Creación de títulos
 			//Elegimos el elemento donde Totos los 'td' van a ser adheridos
 			var	tablaElegida= document.getElementById("tablaElegida");
+			
 			
 			var cabecera = ["-ID-", "nombre", "Estado"];
 			
@@ -68,8 +68,8 @@ function verServicios(){
 								
 							//Adherimos el texto ya creado a los td
 							newtdId_servicio.appendChild(textoId_servicio);
-								
-						
+							
+							
 						//Nombre
 							//Creamos los td  que contendrán los resultados
 							var newtdNombre= document.createElement("td");
@@ -84,19 +84,20 @@ function verServicios(){
 							newtdNombre.appendChild(textoNombre);	
 							
 							
-						
+							
 							//TODO Revisar el cambio de colores en los true y false
 							//Activo
-								if(parseDatos[i].activo==true)
-									{
-										parseDatos[i].activo="Activo";
-										//newtdActivo.style.color='green';
-									}
-								else
-									{
-										parseDatos[i].activo="Inactivo";
-										//newtdActivo.style.color='red';
-									}
+							if(parseDatos[i].activo==true)
+							{
+								parseDatos[i].activo="Activo";
+									
+							}
+						else
+							{
+								parseDatos[i].activo="Inactivo";
+		
+							}
+
 							//Creamos los td  que contendrán los resultados
 							var newtdActivo= document.createElement("td");
 							
@@ -108,8 +109,55 @@ function verServicios(){
 							
 							//Adherimos el texto ya creado a los td
 							newtdActivo.appendChild(textoActivo);
+							
+							
+								//TODO Revisar el cambio de colores en los true y false
+								//Activo
+								if(parseDatos[i].activo=="Activo")
+								{
+								
+									//Creamos los td  que contendrán los resultados
+									var newtdImagen= document.createElement("td");
+									
+									//Adherimos los td a la tabla ya existente
+									tablaElegida.appendChild(newtdImagen);
+						
+								
+									//Inicio creación de imagen
+										var img= document.createElement("img");
+											img.setAttribute('src', 'src/img/onverde.png');
+											newtdImagen.appendChild(img);
+									//Final creación de imagen
+										
+								}
+							else
+								{
+									//Creamos los td  que contendrán los resultados
+									var newtdImagen= document.createElement("td");
+									
+									//Adherimos los td a la tabla ya existente
+									tablaElegida.appendChild(newtdImagen);
+						
+							
+									//Inicio creación de imagen
+									var img= document.createElement("img");
+										img.setAttribute('src', 'src/img/offrojo.png');
+										newtdImagen.appendChild(img);
+									//Final creación de imagen
+										
+								}
+								
 						}
 					}
+				
+				//Código de limpieza
+				var	tablaElegida= document.getElementById("tablaElegida");
+				var body= document.getElementById("body");
+					body.onclick= function(){
+					tablaElegida.innerHTML = '';
+				}
+				
+				
 				}
 			}
 	xmlhttp.open("POST", url, true);
@@ -282,6 +330,14 @@ function verEventos(){
 							newtdFecha.appendChild(textoFecha);
 						}
 					}
+				
+				//Código de limpieza
+				var	tablaElegida= document.getElementById("tablaElegida");
+				var body= document.getElementById("body");
+					body.onclick= function(){
+					tablaElegida.innerHTML = '';
+				}
+				
 				}
 			}
 	xmlhttp.open("POST", url, true);
@@ -456,10 +512,56 @@ function verZonas(){
 							
 							//Adherimos el texto ya creado a los td
 							newtdCubierta.appendChild(textoCubierta);
+							
+
+							
+							//TODO Revisar el cambio de colores en los true y false
+							//Activo
+							if(parseDatos[i].cubierta=="Protegida")
+							{
+							
+								//Creamos los td  que contendrán los resultados
+								var newtdImagen= document.createElement("td");
+								
+								//Adherimos los td a la tabla ya existente
+								tablaElegida.appendChild(newtdImagen);
+					
+							
+								//Inicio creación de imagen
+									var img= document.createElement("img");
+										img.setAttribute('src', 'src/img/onverde.png');
+										newtdImagen.appendChild(img);
+								//Final creación de imagen
+									
+							}
+						else
+							{
+								//Creamos los td  que contendrán los resultados
+								var newtdImagen= document.createElement("td");
+								
+								//Adherimos los td a la tabla ya existente
+								tablaElegida.appendChild(newtdImagen);
+					
+						
+								//Inicio creación de imagen
+								var img= document.createElement("img");
+									img.setAttribute('src', 'src/img/offrojo.png');
+									newtdImagen.appendChild(img);
+								//Final creación de imagen
+									
+							}
 						}
 					}
+				
+					//Comienza código de limpieza
+					var	tablaElegida= document.getElementById("tablaElegida");
+					var body= document.getElementById("body");
+						body.onclick= function(){
+						tablaElegida.innerHTML = '';
 				}
+					//Termina código de limpieza	
 			}
+		}
 	xmlhttp.open("POST", url, true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("usuario="+usuario.value+"&pass="+pass.value);

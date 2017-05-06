@@ -1,9 +1,5 @@
 package org.comunidadIT.proyecto.validaciones;
 
-import java.sql.Connection;
-
-import org.comunidadIT.proyecto.accesoDatos.ConexionAeropuerto;
-
 public class ValidarCantidadPasajeros {
 	
 	public static boolean validarCantidadPasajeros(int pasajes, int int_sql_pasajeros){
